@@ -15,9 +15,9 @@ services:
     volumes:
       - ./:/app  # Mount the current directory
     ports:
-      - "5000:5000"  # Web interface port
+      - "6969:6969"  # Web interface port
     healthcheck:  # Add health checking
-      test: ["CMD", "curl", "-f", "http://localhost:5000"]
+      test: ["CMD", "curl", "-f", "http://localhost:6969"]
       interval: 30s
       timeout: 10s
       retries: 3

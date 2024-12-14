@@ -25,7 +25,7 @@ A sleek, modern web-based Roku remote control application that allows you to dis
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/roku_remote.git
+   git clone https://github.com/denialmedia/roku_remote.git
    cd roku_remote
    ```
 
@@ -52,7 +52,7 @@ A sleek, modern web-based Roku remote control application that allows you to dis
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/yourusername/roku_remote.git
+git clone https://github.com/denialmedia/roku_remote.git
 cd roku_remote
 ```
 
@@ -103,13 +103,13 @@ python roku_remote.py
 ## Network Requirements
 
 - The app must be on the same network as your Roku devices
-- Port 5000 must be accessible for the web interface
+- Port 6969 must be accessible for the web interface
 - SSDP (UDP port 1900) must be accessible for device discovery
 
 ## Notes
 
 - The container uses host networking to enable Roku device discovery
-- The web interface is accessible on port 5000
+- The web interface is accessible on port 6969
 - The app will automatically discover Roku devices on your network
 - App icons are fetched directly from your Roku devices
 

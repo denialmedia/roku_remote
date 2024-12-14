@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  roku-remote:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: roku-remote
+    network_mode: "host"  # Required for SSDP discovery of Roku devices
+    restart: unless-stopped
+    environment:
+      - TZ=America/Chicago  # Set your timezone
+      - FLASK_ENV=production
+      - FLASK_APP=roku_remote.py
+    volumes:
+      - ./:/app  # Mount the current directory
+    ports:
+      - "5000:5000"  # Web interface port
+    healthcheck:  # Add health checking
+      test: ["CMD", "curl", "-f", "http://localhost:5000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

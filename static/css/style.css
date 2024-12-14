@@ -1,0 +1,344 @@
+:root {
+    /* Rosé Pine Theme Colors */
+    --base: #191724;
+    --surface: #1f1d2e;
+    --overlay: #26233a;
+    --muted: #6e6a86;
+    --subtle: #908caa;
+    --text: #e0def4;
+    --love: #eb6f92;
+    --gold: #f6c177;
+    --rose: #ebbcba;
+    --pine: #31748f;
+    --foam: #9ccfd8;
+    --iris: #c4a7e7;
+    --highlight-low: #3b3f54;
+    --highlight-med: #4c4f69;
+    --highlight-high: #5c5f7e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--base);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 1rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 0.5rem;
+    }
+    
+    .container {
+        padding: 0.5rem;
+    }
+}
+
+/* Device Scanner Styles */
+.device-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.device-item {
+    background-color: var(--overlay);
+    padding: 1.5rem;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.device-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.device-item h3 {
+    color: var(--foam);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.device-item p {
+    color: var(--subtle);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Remote Control Styles */
+.remote-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.back-button button {
+    background: var(--overlay);
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.back-button button:hover {
+    background: var(--highlight-low);
+    transform: translateY(-1px);
+}
+
+.remote-status {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    background: var(--overlay);
+    border-radius: 6px;
+}
+
+.remote-grid {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.remote-grid:hover {
+    transform: translateY(-2px);
+}
+
+.button-row,
+.volume-row {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.control-button,
+.nav-button,
+.volume-button {
+    background: var(--highlight-low);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 6px;
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.control-button:hover,
+.nav-button:hover,
+.volume-button:hover {
+    background: var(--highlight-med);
+    transform: translateY(-2px);
+}
+
+.control-button:active,
+.nav-button:active,
+.volume-button:active {
+    transform: translateY(0);
+    background: var(--highlight-high);
+}
+
+.navigation-cluster {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+
+.nav-button {
+    width: 100%;
+    height: 100%;
+}
+
+.nav-up { grid-area: 1/2/2/3; }
+.nav-left { grid-area: 2/1/3/2; }
+.nav-ok { 
+    grid-area: 2/2/3/3;
+    background: var(--highlight-med);
+}
+.nav-right { grid-area: 2/3/3/4; }
+.nav-down { grid-area: 3/2/4/3; }
+
+.nav-ok:hover {
+    background: var(--highlight-high);
+}
+
+/* Apps Section */
+.apps-section {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.apps-section h3 {
+    color: var(--subtle);
+    margin-bottom: 1rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.apps-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 1rem;
+    padding: 0.5rem;
+}
+
+.app-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    border: none;
+    background: var(--highlight-low);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.app-button:hover {
+    background: var(--highlight-med);
+    transform: translateY(-2px);
+}
+
+.app-button:active {
+    transform: translateY(0);
+}
+
+.app-button img {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+.app-button:hover img {
+    transform: scale(1.1);
+}
+
+.app-button span {
+    font-size: 0.8rem;
+    color: var(--text);
+    text-align: center;
+}
+
+.loading-apps {
+    width: 100%;
+    text-align: center;
+    color: var(--muted);
+    padding: 1rem;
+    grid-column: 1/-1;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.remote-container > * {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+.remote-container > *:nth-child(2) { animation-delay: 0.1s; }
+.remote-container > *:nth-child(3) { animation-delay: 0.2s; }
+.remote-container > *:nth-child(4) { animation-delay: 0.3s; }
+
+/* Utility Classes */
+.btn {
+    background-color: var(--overlay);
+    color: var(--text);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+}
+
+.btn:hover {
+    background-color: var(--pine);
+    transform: translateY(-2px);
+}
+
+/* Loading and Status Styles */
+#loading {
+    color: var(--iris);
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.status-message {
+    color: var(--gold);
+    margin: 1rem 0;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    background-color: var(--overlay);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Font size adjustments for mobile */
+@media (max-width: 480px) {
+    .nav-button i,
+    .control-button i,
+    .volume-button i {
+        font-size: 0.9rem;
+    }
+    
+    .remote-status {
+        font-size: 0.8rem;
+    }
+}

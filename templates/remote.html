@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Roku Remote Control{% endblock %}
+
+{% block content %}
+    <div class="remote-container">
+        <div class="back-button">
+            <button onclick="window.location.href='/'">
+                <i class="fas fa-arrow-left"></i> Back to Devices
+            </button>
+        </div>
+
+        <div class="remote-status">
+            <i class="fas fa-wifi"></i> Connected to: <span id="ipAddress">{{ip}}</span>
+        </div>
+
+        <div class="remote-grid">
+            <!-- Top Row Buttons -->
+            <div class="button-row">
+                <button class="control-button" onclick="sendCommand('back')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <button class="control-button" onclick="sendCommand('home')">
+                    <i class="fas fa-home"></i>
+                </button>
+            </div>
+
+            <!-- Navigation Cluster -->
+            <div class="navigation-cluster">
+                <button class="nav-button nav-up" onclick="sendCommand('up')">
+                    <i class="fas fa-chevron-up"></i>
+                </button>
+                <button class="nav-button nav-left" onclick="sendCommand('left')">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="nav-button nav-ok" onclick="sendCommand('select')">
+                    <i class="fas fa-circle"></i>
+                </button>
+                <button class="nav-button nav-right" onclick="sendCommand('right')">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <button class="nav-button nav-down" onclick="sendCommand('down')">
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+
+            <!-- Playback Controls -->
+            <div class="button-row">
+                <button class="control-button" onclick="sendCommand('rev')">
+                    <i class="fas fa-backward"></i>
+                </button>
+                <button class="control-button" onclick="sendCommand('play')">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="control-button" onclick="sendCommand('fwd')">
+                    <i class="fas fa-forward"></i>
+                </button>
+            </div>
+
+            <!-- Volume Controls -->
+            <div class="volume-row">
+                <button class="volume-button" onclick="sendCommand('volume_down')">
+                    <i class="fas fa-volume-down"></i>
+                </button>
+                <button class="volume-button" onclick="sendCommand('volume_mute')">
+                    <i class="fas fa-volume-mute"></i>
+                </button>
+                <button class="volume-button" onclick="sendCommand('volume_up')">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="apps-section">
+            <h3>Quick Launch</h3>
+            <div id="apps-container" class="apps-container">
+                <div class="loading-apps">Loading apps...</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function sendCommand(command) {
+            const ip = document.getElementById('ipAddress').textContent;
+            fetch('/command', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ip: ip,
+                    command: command
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'error') {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to send command');
+            });
+        }
+    </script>
+{% endblock %}

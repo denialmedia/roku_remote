@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Roku Device Scanner{% endblock %}
+
+{% block content %}
+    <h1><i class="fas fa-tv"></i> Roku Device Scanner</h1>
+    <button class="btn" onclick="scanDevices()">
+        <i class="fas fa-search"></i> Scan for Devices
+    </button>
+    <div id="loading" style="display: none;">
+        <i class="fas fa-spinner fa-spin"></i> Scanning...
+    </div>
+    <div id="deviceList" class="device-list"></div>
+
+    <script>
+        function scanDevices() {
+            const loading = document.getElementById('loading');
+            const deviceList = document.getElementById('deviceList');
+            loading.style.display = 'block';
+            deviceList.innerHTML = '';
+
+            fetch('/discover')
+                .then(response => response.json())
+                .then(devices => {
+                    loading.style.display = 'none';
+                    devices.forEach(device => {
+                        const div = document.createElement('div');
+                        div.className = 'device-item';
+                        div.innerHTML = `
+                            <h3>${device.name}</h3>
+                            <p>Model: ${device.model}</p>
+                            <p>IP: ${device.ip}</p>
+                        `;
+                        div.onclick = () => window.location.href = `/remote/${device.ip}`;
+                        deviceList.appendChild(div);
+                    });
+                    if (devices.length === 0) {
+                        deviceList.innerHTML = '<div>No devices found</div>';
+                    }
+                })
+                .catch(error => {
+                    loading.style.display = 'none';
+                    deviceList.innerHTML = '<div>Error scanning for devices</div>';
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+{% endblock %}

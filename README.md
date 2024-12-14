@@ -2,7 +2,7 @@
 
 A sleek, modern web-based Roku remote control application that allows you to discover and control Roku devices on your local network. Built with Flask and styled with the beautiful Rosé Pine theme.
 
-![Roku Remote Screenshot](screenshots/remote.png)
+![Roku Remote Screenshot](roku_remote.png)
 
 ## Features
 

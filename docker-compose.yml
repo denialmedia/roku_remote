@@ -14,8 +14,6 @@ services:
       - FLASK_APP=roku_remote.py
     volumes:
       - ./:/app  # Mount the current directory
-    ports:
-      - "6969:6969"  # Web interface port
     healthcheck:  # Add health checking
       test: ["CMD", "curl", "-f", "http://localhost:6969"]
       interval: 30s

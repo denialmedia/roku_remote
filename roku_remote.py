@@ -72,17 +72,12 @@ def get_apps(ip):
     try:
         roku = Roku(ip)
         apps = []
-        for app_key, app_info in APPS.items():
-            try:
-                app = roku[app_info['id']]
-                apps.append({
-                    'id': app_info['id'],
-                    'name': app_info['name'],
-                    'icon_url': f'http://{ip}:8060/query/icon/{app_info["id"]}'
-                })
-            except Exception as e:
-                print(f"Error getting app {app_key}: {e}")
-                continue
+        for app in roku.apps:
+            apps.append({
+                'id': app.id,
+                'name': app.name,
+                'icon_url': f'http://{ip}:8060/query/icon/{app.id}'
+            })
         return jsonify(apps)
     except Exception as e:
         return jsonify({'error': str(e)}), 500

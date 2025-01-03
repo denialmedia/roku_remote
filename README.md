@@ -7,6 +7,7 @@ A sleek, modern web-based Roku remote control application that allows you to dis
 ## Features
 
 - **Device Discovery**: Automatically scan and find Roku devices on your local network
+- **Loads All Apps**: Now loads all installed apps from your Roku device, not just a predefined list.
 - **Full Remote Control**: Complete set of remote control functions including:
   - Navigation (Up, Down, Left, Right, OK)
   - Playback controls (Play/Pause, Forward, Rewind)
@@ -34,7 +35,7 @@ A sleek, modern web-based Roku remote control application that allows you to dis
    docker-compose up -d
    ```
 
-3. Access the remote at `http://your-server-ip:5000`
+3. Access the remote at `http://your-server-ip:6969`
 
 ### Option 2: Using Docker Directly
 
